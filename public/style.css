@@ -98,17 +98,26 @@ body {
 }
   
 .menu .section .options .option .check {
-    opacity: 0;
-    color: #32B72F;
-    font-size: 20px;
+    display: none;
+}
+
+.menu .section .options .option.selected .check {
+    display: flex;
+}
+
+.menu .section .options .option .check p {
+    margin: 0 4px;
+}
+
+.menu .section .options .option .check .minus {
+    color: red;
+}
+
+.menu .section .options .option .check .plus {
+    color: green;
 }
   
-.menu .section .options .option.selecionado .check {
-    opacity: 1;
-}
-  
-  
-.menu .section .options .option.selecionado {
+.menu .section .options .option.selected {
     border: 5px solid #32B72F;
     padding: 13px 9px;
 }

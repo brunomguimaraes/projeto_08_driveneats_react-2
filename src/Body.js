@@ -19,7 +19,7 @@ export default function Body() {
       </div>
 
       <div class="footer">
-        <a class='do-order' onClick=''>Selecione os 3 itens /n para fechar o confirmarPedido</a>
+        <a class='do-order' onClick=''>Selecione os 3 itens <br/> para fechar o pedido</a>
       </div>
 
     </div>

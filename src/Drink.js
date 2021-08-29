@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function Drink() {
     const arrayDrink = [
         {
@@ -34,16 +36,28 @@ export default function Drink() {
     );
 }
 
-function List(props) {
+function List({img, title, description, cost}) {
+    const [selected, setSelected] = useState('');
+    const [value, setValue] = useState (1);
+
+    function Valuate(num) {
+        if (value + num === 0) {
+            setSelected ('');
+        }
+        setValue (value + num);
+    }
+
     return (
-        <div class='option'>
-            <img src={props.img} />
-            <div class='title'>{props.title}</div>
-            <div class='descriptions'>{props.description}</div>
+        <div class={`option ${selected}`} onClick = {() => setSelected('selected')}>
+            <img src={img} />
+            <div class='title'>{title}</div>
+            <div class='descriptions'>{description}</div>
             <div class='information'>
-                <div class='value'>{props.cost}</div>
+                <div class='value'>{cost}</div>
                 <div class='check'>
-                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <p class="minus" onClick= {(is) => {Valuate(-1); is.stopPropagation();}}> - </p>
+                    <p>{value}</p>
+                    <p class="plus" onClick= {(is) => {Valuate(1); is.stopPropagation();}}> + </p>
                 </div>
             </div>
         </div>
