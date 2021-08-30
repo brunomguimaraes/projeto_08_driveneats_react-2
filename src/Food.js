@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Food() {
+export default function Food({validation, setValidation}) {
     const arrayFood = [
         {
             img: 'img/Asa_frango_assadaaa.jpg',
@@ -20,7 +20,7 @@ export default function Food() {
             description: 'Com farofa, arroz e macaxeira',
             cost:'R$ 12,90'
         }
-    ]
+    ] 
 
     return (
         <div class='section'>
@@ -28,26 +28,36 @@ export default function Food() {
 
             <div class='options food'>
                 {arrayFood.map( (option) => <Menu img= {option.img} title={option.title}
-                description={option.description} cost={option.cost} />)}
+                description={option.description} cost={option.cost} validation={validation} 
+                setValidation={setValidation} />)}
 
             </div>
         </div>
     );
 }
 
-function Menu({img, title, description, cost}) {
+function Menu({img, title, description, cost, setValidation, validation}) {
     const [selected, setSelected] = useState('');
-    const [value, setValue] = useState (1);
+    const [value, setValue] = useState (0);
 
     function Valuate(num) {
         if (value + num === 0) {
             setSelected ('');
+            setValidation (validation - 1);
         }
         setValue (value + num);   
     }
+    
+    function selectedItem() {
+        if (!selected) {
+            setValue (1);
+            setSelected ('selected')
+            setValidation (validation + 1) 
+        }
+    }
 
     return (
-        <div class={`option ${selected}`} onClick = {() => setSelected('selected')}>
+        <div class={`option ${selected}`} onClick = {selectedItem}>
             <img src={img} />
             <div class='title'>{title}</div>
             <div class='descriptions'>{description}</div>

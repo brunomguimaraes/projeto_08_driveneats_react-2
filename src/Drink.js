@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Drink() {
+export default function Drink({validation, setValidation}) {
     const arrayDrink = [
         {
             img: 'img/coquinha_gelada.png',
@@ -28,27 +28,37 @@ export default function Drink() {
 
             <div class='options drink'>
 
-                {arrayDrink.map( (option) => <List img={option.img} title= {option.title}
-                description={option.description} cost={option.cost} />)}
+                {arrayDrink.map( (option) => <Menu img={option.img} title= {option.title}
+                description={option.description} cost={option.cost} validation={validation}
+                setValidation={setValidation}/>)}
 
             </div>
         </div>
     );
 }
 
-function List({img, title, description, cost}) {
+function Menu({img, title, description, cost, validation, setValidation}) {
     const [selected, setSelected] = useState('');
-    const [value, setValue] = useState (1);
+    const [value, setValue] = useState (0);
 
     function Valuate(num) {
         if (value + num === 0) {
             setSelected ('');
+            setValidation (validation - 1);
         }
         setValue (value + num);
     }
 
+    function selectedItem() {
+        if (!selected) {
+            setValue (1);
+            setSelected ('selected')
+            setValidation (validation + 1) 
+        }
+    }
+
     return (
-        <div class={`option ${selected}`} onClick = {() => setSelected('selected')}>
+        <div class={`option ${selected}`} onClick = {selectedItem}>
             <img src={img} />
             <div class='title'>{title}</div>
             <div class='descriptions'>{description}</div>
