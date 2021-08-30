@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Dessert(validation, setValidation) {
+export default function Dessert({validation, setValidation}) {
     const arrayDessert = [
         {
             img: 'img/pudim.png',
@@ -23,27 +23,27 @@ export default function Dessert(validation, setValidation) {
     ]
 
     return (
- 
         <div class='section'>
           <div class='title'>Por fim, sua sobremesa</div>
 
             <div class='options dessert'>
                 {arrayDessert.map ( (option) => <Menu img={option.img} title={option.title}
                 description={option.description} cost={option.cost} validation={validation}
-                setValidation={setValidation} />)}
+                setValidation={setValidation}/>)}
 
             </div>
         </div>
     );
 }
-function Menu({img, title, description, cost, validation, setValidation}) {
+
+function Menu({img, title, description, cost, setValidation, validation}) {
     const [selected, setSelected] = useState('');
     const [value, setValue] = useState (0);
 
     function Valuate(num) {
         if (value + num === 0) {
             setSelected ('');
-            setValidation (validation - 1)
+            setValidation (validation - 1);
         }
         setValue (value + num);
     }
@@ -52,7 +52,7 @@ function Menu({img, title, description, cost, validation, setValidation}) {
         if (!selected) {
             setValue (1);
             setSelected ('selected')
-            setValidation (validation + 1) 
+            setValidation (validation + 1);
         }
     }
 

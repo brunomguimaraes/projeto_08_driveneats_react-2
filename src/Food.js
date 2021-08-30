@@ -29,7 +29,7 @@ export default function Food({validation, setValidation}) {
             <div class='options food'>
                 {arrayFood.map( (option) => <Menu img= {option.img} title={option.title}
                 description={option.description} cost={option.cost} validation={validation} 
-                setValidation={setValidation} />)}
+                setValidation={setValidation}/>)}
 
             </div>
         </div>

@@ -9,7 +9,7 @@ export default function App() {
     const [validateFood, setValidateFood] = useState(0)
     const [validateDrink, setValidateDrink] = useState(0)
     const [validateDessert, setValidateDessert] = useState(0)
-    let isOrderValidate; 
+    let isOrderValidate;
     if (validateFood !== 0 && validateDrink !==0 && validateDessert !== 0) {
         isOrderValidate = true; 
     } else {
@@ -20,11 +20,11 @@ export default function App() {
         <>
             <TopBar/>
             <div class="menu">
-                <Food validation= {validateFood} setValidation= {setValidateFood} />
+                <Food validation= {validateFood} setValidation= {setValidateFood}/>
                 <Drink  validation= {validateDrink} setValidation= {setValidateDrink}/>
                 <Dessert validation= {validateDessert} setValidation= {setValidateDessert}/>
             </div>
-            <BottomBar />
+            <BottomBar validation= {isOrderValidate}/>
         </>
     );
 }
